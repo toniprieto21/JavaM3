@@ -43,13 +43,19 @@ public class Seccio {
 	 * @throws IllegalArgumentException En cas que el valor que li passem sigui null o cadena buida.
 	 */
 	public void setNom(String n) {
-		if (n == null || n.equals("")) {
-			throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+		try {
+			if (n == null || n.equals("")) {
+				throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+			}
+			else {
+				nom = n;
+			}
 		}
-		else {
-			nom = n;
+		catch (IllegalArgumentException IAE) {
+			System.out.println("El valor no pot ser null o cadena buida.");
 		}
 	}
+
 
 	/**
 	 * Getter de l'atribut codiCDU
@@ -65,11 +71,16 @@ public class Seccio {
 	 * @throws IllegalArgumentException En cas que el valor que li passem sigui null o cadena buida.
 	 */
 	public void setCodiCDU(String c) {
-		if (c == null || c.equals("")) {
-			throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+		try {
+			if (c == null || c.equals("")) {
+				throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+			}
+			else {
+				codiCDU = c;
+			}
 		}
-		else {
-			codiCDU = c;
+		catch (IllegalArgumentException IAE) {
+			System.out.println("El valor no pot ser null o cadena buida.");
 		}
 	}
 
@@ -82,23 +93,28 @@ public class Seccio {
 	 */
 	public void addLlibre (Llibre l) {
 		try {
-			for (int i = 0; i < llibres.size(); i++) {
-				if (l.getIsbn() == llibres.elementAt(i).getIsbn()) {
-					throw new LlibreRepetitException ("El llibre està repetit.");
-				}
+			// Condicional que s'activa en cas que el valor que donem valgui null.
+			if (l == null) {
+				throw new IllegalArgumentException("La referencia no pot ser nul.");
 			}
-			if (l.equals(null)) {
-				throw new IllegalArgumentException ("El valor del llibre val null.");
+
+			if (posicioLlibre(l.getIsbn()) != -1) {
+				throw new LlibreRepetitException("LLIBRE REPETIT");
 			}
+
 			else {
 				llibres.add(l);
 			}
 		}
-		catch (IllegalArgumentException e) {
-			System.out.println("Valor null.");
+		catch (IllegalArgumentException IAE){
+			System.out.println("La referencia no pot ser nul.");
+			System.out.println("");
+			System.out.println("");
 		}
-		catch (LlibreRepetitException e) {
-			System.out.println("El codi ISBN del llibre que vol afegir està duplicat.");
+		catch (LlibreRepetitException LRE){
+			System.out.println("El llibre que has intentat afegir ja existeix. ISBN del llibre: " + l.getIsbn());
+			System.out.println("");
+			System.out.println("");
 		}
 
 	}
@@ -112,9 +128,31 @@ public class Seccio {
 	 */
 	public void removeLlibre(String i) {
 		int pos;
-
 		pos = posicioLlibre(i);
-		llibres.remove(pos);			
+
+		try {
+			if (posicioLlibre(i) == -1) {
+				throw new LlibreInexistentException("L'ISBN donat no coincideix amb cap llibre.");
+			}
+			
+			else if (i == null || i.equals("")) {
+				throw new IllegalArgumentException("");
+			}
+			else {
+				llibres.remove(pos);
+			}
+			
+		}
+		catch (IllegalArgumentException IAE) {
+			System.out.println("El valor no potser null.");
+			System.out.println("");
+			System.out.println("");
+		}
+		catch (LlibreInexistentException LIE) {
+			System.out.println("L'ISBN donat no coincideix amb cap llibre.");
+			System.out.println("");
+			System.out.println("");
+		}			
 	}
 
 

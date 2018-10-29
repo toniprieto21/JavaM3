@@ -55,11 +55,16 @@ public class Llibre {
 	 * @throws IllegalArgumentException En cas que el valor que donem valgui null o cadena buida.
 	 */
 	public void setTitol(String t) {	
-		if (t == null || t.equals("")) {
-			throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+		try {
+			if (t == null || t.equals("")) {
+				throw new IllegalArgumentException("");
+			}
+			else {
+				this.titol = t;
+			}
 		}
-		else {
-			this.titol = t;
+		catch (IllegalArgumentException IAE) {
+			System.out.println("El valor no pot ser null o cadena buida.");
 		}
 	}
 
@@ -79,11 +84,16 @@ public class Llibre {
 	 * @throws IllegalArgumentException En cas que el valor que donem valgui null o cadena buida.
 	 */
 	public void setIsbn(String i) {
-		if (i == null || i.equals("")) {
-			throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+		try {
+			if (i == null || i.equals("")) {
+				throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+			}
+			else {
+				this.isbn = i;
+			}
 		}
-		else {
-			this.isbn = i;
+		catch (IllegalArgumentException IAE) {
+			System.out.println("El valor no pot ser null o cadena buida.");
 		}
 	}
 
@@ -103,11 +113,16 @@ public class Llibre {
 	 * @throws IllegalArgumentException En cas que el valor que donem valgui null o cadena buida.
 	 */
 	public void setAutor(String a) {
-		if (a == null || a.equals("")) {
-			throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+		try {
+			if (a == null || a.equals("")) {
+				throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+			}
+			else {
+				this.autor = a;
+			}
 		}
-		else {
-			this.autor = a;
+		catch (IllegalArgumentException IAE) {
+			System.out.println("El valor no pot ser null o cadena buida.");
 		}
 	}
 
@@ -127,11 +142,16 @@ public class Llibre {
 	 * @throws IllegalArgumentException En cas que el valor que donem valgui null o cadena buida.
 	 */
 	public void setEditorial(String e) {
-		if (e == null || e.equals("")) {
-			throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+		try {
+			if (e == null || e.equals("")) {
+				throw new IllegalArgumentException("El valor no pot ser null o cadena buida.");
+			}
+			else {
+				this.editorial = e;
+			}
 		}
-		else {
-			this.editorial = e;
+		catch (IllegalArgumentException IAE) {
+			System.out.println("El valor no pot ser null o cadena buida.");
 		}
 	}
 
@@ -151,11 +171,16 @@ public class Llibre {
 	 * @throws IllegalArgumentException En cas que el valor sigui menor que 1.
 	 */
 	public void setNumPagines(int n) {
-		if (n < 1) {
-			throw new IllegalArgumentException("El valor no pot ser menor que 1.");
+		try {
+			if (n < 1) {
+				throw new IllegalArgumentException("El valor no pot ser menor que 1.");
+			}
+			else {
+				this.numPagines = n;
+			}
 		}
-		else {
-			this.numPagines = n;
+		catch (IllegalArgumentException IAE) {
+			System.out.println("El valor no pot ser menor que 1.");
 		}
 	}
 
@@ -176,11 +201,17 @@ public class Llibre {
 	 * l'escriptura va néixer pels volts del 3300 aC).
 	 */
 	public void setAnyEdicio(int a) {
-		if (a < -3300) {
-			throw new IllegalArgumentException("El valor no pot ser menor que -3300.");
+		try {
+			if (a < -3300) {
+				throw new IllegalArgumentException("El valor no pot ser menor que -3300.");
+			}
+			else {
+				this.anyEdicio = a;
+			}
 		}
-		else {
-			this.anyEdicio = a;
+		catch (IllegalArgumentException IAE){
+			System.out.println("El valor no pot ser menor que -3300.");
 		}
 	}
+
 }
